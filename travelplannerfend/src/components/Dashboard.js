@@ -96,7 +96,7 @@ const Dashboard = () => {
     dispatch(setError(null));
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.post('http://localhost:8000/api/plan/', formData, {
+      const response = await axios.post('https://travel-planner-backend-savs.onrender.com/api/plan/', formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(setTrip(response.data));
@@ -210,7 +210,7 @@ const Dashboard = () => {
                       <Typography sx={{ mt: 2 }}>Remaining Hours: {currentTrip.remaining_hours}</Typography>
                       <Tooltip title="Download your ELD logs as PDF">
                         <Button
-                          href={`http://localhost:8000/${currentTrip.pdf_path}`}
+                          href={`https://travel-planner-backend-savs.onrender.com/${currentTrip.pdf_path}`}
                           download
                           variant="contained"
                           color="secondary"
