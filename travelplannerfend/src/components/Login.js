@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/auth/token/', credentials);
+      const response = await axios.post('https://travel-planner-backend-savs.onrender.com/api/auth/token/', credentials);
       localStorage.setItem('token', response.data.access);
       navigate('/');
     } catch (error) {
