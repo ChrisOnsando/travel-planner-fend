@@ -36,7 +36,7 @@ const Dashboard = () => {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-122.4194, 37.7749], 
+        center: [-122.4194, 37.7749],
         zoom: 5,
       });
     }
@@ -95,13 +95,14 @@ const Dashboard = () => {
     dispatch(setLoading(true));
     dispatch(setError(null));
     const token = localStorage.getItem('token');
+    console.log("Sending payload:", formData); // Added logging
     try {
       const response = await axios.post('https://travel-planner-backend-savs.onrender.com/api/plan/', formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(setTrip(response.data));
     } catch (err) {
-      dispatch(setError(err.response?.data?.detail || 'Failed to plan trip'));
+      dispatch(setError(err.response?.data?.error || 'Failed to plan trip')); // Updated error handling
     }
     dispatch(setLoading(false));
   };
